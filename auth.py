@@ -1,10 +1,10 @@
 """
-Solar Monitor - Kimlik Doğrulama Sistemi
+Solar Monitor - Kimlik Dogrulama Sistemi
 ==========================================
-Streamlit session state tabanlı login/logout.
-Glossy tasarımlı giriş ekranı.
+Streamlit session state tabanli login/logout.
+Glossy tasarimli giris ekrani.
 
-Kullanım:
+Kullanm:
     from auth import check_auth, logout_button
     if not check_auth():
         st.stop()
@@ -17,12 +17,12 @@ import streamlit as st
 
 
 def _get_password_hash(password: str) -> str:
-    """SHA-256 ile şifre hash'i oluşturur."""
+    """SHA-256 ile ifre hash'i oluturur."""
     return hashlib.sha256(password.encode('utf-8')).hexdigest()
 
 
 def _verify_password(password: str, stored_hash: str) -> bool:
-    """Şifreyi hash ile karşılaştırır."""
+    """ifreyi hash ile karlatrr."""
     return _get_password_hash(password) == stored_hash
 
 
@@ -32,27 +32,27 @@ def _is_auth_enabled() -> bool:
 
 
 def _get_credentials() -> tuple[str, str]:
-    """Kullanıcı adı ve şifre hash'ini döner.
+    """Kullanc ad ve ifre hash'ini dner.
     
     Returns:
-        (username, password_hash) — hash boşsa varsayılan 'admin' şifresi kullanılır
+        (username, password_hash)  hash bosa varsaylan 'admin' ifresi kullanlr
     """
     username = os.getenv("AUTH_USERNAME", "admin")
     password_hash = os.getenv("AUTH_PASSWORD_HASH", "")
 
-    # Hash tanımlı değilse varsayılan şifre: "admin"
+    # Hash tanml deilse varsaylan ifre: "admin"
     if not password_hash:
         password_hash = _get_password_hash("admin")
 
     return username, password_hash
 
 
-# ══════════════════════════════════════════════════════════════
-# LOGIN CSS (Glossy Tasarım)
-# ══════════════════════════════════════════════════════════════
+# 
+# LOGIN CSS (Glossy Tasarm)
+# 
 _LOGIN_CSS = """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2Infinitefamily=Inter:wght@300;400;500;600;700;800&display=swap');
 
 .login-container {
     max-width: 420px;
@@ -116,26 +116,26 @@ _LOGIN_CSS = """
 
 
 def check_auth() -> bool:
-    """Kimlik doğrulama kontrolü.
+    """Kimlik dorulama kontrol.
 
-    Auth devre dışıysa True döner.
-    Giriş yapılmışsa True döner.
-    Giriş yapılmamışsa login formu gösterir ve False döner.
+    Auth devre dysa True dner.
+    Giri yaplmsa True dner.
+    Giri yaplmamsa login formu gsterir ve False dner.
     """
     if not _is_auth_enabled():
         return True
 
-    # Zaten giriş yapılmış mı?
+    # Zaten giri yaplm mInfinite
     if st.session_state.get("authenticated"):
         return True
 
-    # Login ekranını göster
+    # Login ekrann gster
     _show_login_form()
     return False
 
 
 def _show_login_form():
-    """Glossy login formu gösterir."""
+    """Glossy login formu gsterir."""
     # Arka plan ve login CSS
     st.markdown("""
     <style>
@@ -153,20 +153,20 @@ def _show_login_form():
     st.markdown("""
     <div class="login-container">
         <div class="login-card">
-            <div class="login-logo">⚡</div>
+            <div class="login-logo"></div>
             <div class="login-title">Solar Monitor</div>
-            <div class="login-subtitle">Güneş Enerjisi Santrali İzleme Sistemi</div>
+            <div class="login-subtitle">Gunes Enerjisi Santrali Izleme Sistemi</div>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
-    # Login formu (Streamlit native — CSS card'ın altına yerleşir)
+    # Login formu (Streamlit native  CSS card'n altna yerleir)
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         with st.form("login_form", clear_on_submit=False):
-            username_input = st.text_input("👤 Kullanıcı Adı", placeholder="admin")
-            password_input = st.text_input("🔒 Şifre", type="password", placeholder="••••••")
-            submitted = st.form_submit_button("🔓 Giriş Yap", width='stretch', type="primary")
+            username_input = st.text_input("Kullanici Adi", placeholder="admin")
+            password_input = st.text_input("Sifre", type="password", placeholder="")
+            submitted = st.form_submit_button("Giris Yap", width='stretch', type="primary")
 
             if submitted:
                 expected_user, expected_hash = _get_credentials()
@@ -176,18 +176,18 @@ def _show_login_form():
                     st.session_state["username"] = username_input
                     st.rerun()
                 else:
-                    st.error("❌ Kullanıcı adı veya şifre hatalı!")
+                    st.error("Kullanici adi veya sifre hatali!")
 
         st.markdown("""
         <div class="login-footer">
-            Varsayılan: admin / admin<br>
-            .env dosyasından değiştirilebilir.
+            Varsayilan: admin / admin<br>
+            .env dosyasindan degistirilebilir.
         </div>
         """, unsafe_allow_html=True)
 
 
 def logout_button():
-    """Sidebar'da çıkış butonu gösterir."""
+    """Sidebar'da k butonu gsterir."""
     if not _is_auth_enabled():
         return
 
@@ -195,13 +195,13 @@ def logout_button():
         with st.sidebar:
             st.markdown("---")
             user = st.session_state.get("username", "admin")
-            st.caption(f"👤 {user}")
-            if st.button("🚪 Çıkış Yap", key="logout_btn"):
+            st.caption(f" {user}")
+            if st.button("Cikis Yap", key="logout_btn"):
                 st.session_state["authenticated"] = False
                 st.session_state.pop("username", None)
                 st.rerun()
 
 
 def get_current_user() -> str:
-    """Mevcut oturumdaki kullanıcı adını döner."""
+    """Mevcut oturumdaki kullanc adn dner."""
     return st.session_state.get("username", "admin")

@@ -21,6 +21,7 @@ x-common: &common
   volumes:
     - ./data:/app/data
     - ./backups:/app/backups
+    - ./:/app
   environment:
     - PYTHONUNBUFFERED=1
     - DB_NAME=/app/data/solar_log.db
@@ -30,7 +31,7 @@ services:
   solar-collector:
     <<: *common
     container_name: solar_collector
-    entrypoint: ["python", "collector.py"]
+    entrypoint: [ "python", "collector.py" ]
 
   # ─── Ana Dashboard ───
   solar-monitor:
@@ -41,7 +42,7 @@ services:
     depends_on:
       - solar-collector
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8501/_stcore/health')"]
+      test: [ "CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8501/_stcore/health')" ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -52,7 +53,7 @@ services:
     container_name: solar_api
     ports:
       - "8503:8503"
-    entrypoint: ["python", "api.py"]
+    entrypoint: [ "python", "api.py" ]
     environment:
       - PYTHONUNBUFFERED=1
       - DB_NAME=/app/data/solar_log.db
@@ -66,7 +67,7 @@ services:
     container_name: solar_healthcheck
     ports:
       - "8502:8502"
-    entrypoint: ["python", "healthcheck.py"]
+    entrypoint: [ "python", "healthcheck.py" ]
     environment:
       - PYTHONUNBUFFERED=1
       - DB_NAME=/app/data/solar_log.db
@@ -78,7 +79,7 @@ services:
     container_name: solar_prometheus
     ports:
       - "9100:9100"
-    entrypoint: ["python", "prometheus_exporter.py"]
+    entrypoint: [ "python", "prometheus_exporter.py" ]
     environment:
       - PYTHONUNBUFFERED=1
       - DB_NAME=/app/data/solar_log.db
@@ -116,4 +117,4 @@ services:
     container_name: solar_mqtt_listener
     depends_on:
       - solar-mosquitto
-    entrypoint: ["python", "mqtt_listener.py"]
+    entrypoint: [ "python", "mqtt_listener.py" ]

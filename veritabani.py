@@ -210,8 +210,16 @@ def tum_cihazlarin_son_durumu():
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT slave_id, MAX(zaman) as son_zaman, guc, voltaj, akim, sicaklik, hata_kodu, hata_kodu_193
-        FROM olcumler GROUP BY slave_id ORDER BY slave_id ASC
+        SELECT o.slave_id, o.zaman, o.guc, o.voltaj, o.akim, o.sicaklik, o.hata_kodu, o.hata_kodu_193
+        FROM olcumler o
+        WHERE o.id = (
+            SELECT i.id
+            FROM olcumler i
+            WHERE i.slave_id = o.slave_id
+            ORDER BY i.zaman DESC, i.id DESC
+            LIMIT 1
+        )
+        ORDER BY o.slave_id ASC
     """)
     rows = cursor.fetchall()
     conn.close()
@@ -552,4 +560,4 @@ def audit_log_getir(limit=100):
         return rows
     except Exception as e:
         print(f"⚠️ Audit log getirme hatası: {e}")
-        return []
+        return []

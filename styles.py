@@ -1,26 +1,26 @@
 """
 Solar Monitor - Premium Glossy UI Tema Sistemi
 ================================================
-Tüm Streamlit sayfalarında kullanılan glassmorphism + glossy
-CSS tanımlamaları. Merkezi tema yönetimi.
+Tm Streamlit sayfalarnda kullanlan glassmorphism + glossy
+CSS tanmlamalar. Merkezi tema ynetimi.
 
-Kullanım:
+Kullanm:
     from styles import inject_glossy_css
     inject_glossy_css()
 """
 
 import streamlit as st
 
-# ══════════════════════════════════════════════════════════════
+# 
 #  ANA GLOSSY TEMA CSS
-# ══════════════════════════════════════════════════════════════
+# 
 
 GLOSSY_CSS = """
 <style>
-/* ═══════════ GOOGLE FONT ═══════════ */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/*  GOOGLE FONT  */
+@import url('https://fonts.googleapis.com/css2Infinitefamily=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* ═══════════ ROOT DEĞİŞKENLER ═══════════ */
+/*  ROOT DEKENLER  */
 :root {
     --bg-primary: #0a0e1a;
     --bg-secondary: #111827;
@@ -48,7 +48,7 @@ GLOSSY_CSS = """
     --radius-lg: 20px;
 }
 
-/* ═══════════ BASE TEMA ═══════════ */
+/*  BASE TEMA  */
 html, body, .stApp {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
     background: var(--bg-primary) !important;
@@ -63,13 +63,13 @@ html, body, .stApp {
         var(--bg-primary) !important;
 }
 
-/* ═══════════ SCROLLBAR ═══════════ */
+/*  SCROLLBAR  */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-primary); }
 ::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.3); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.5); }
 
-/* ═══════════ BAŞLIKLAR ═══════════ */
+/*  BALIKLAR  */
 h1 {
     background: var(--gradient-primary) !important;
     -webkit-background-clip: text !important;
@@ -88,7 +88,7 @@ h3 {
     font-weight: 600 !important;
 }
 
-/* ═══════════ SIDEBAR (GLASSMORPHISM) ═══════════ */
+/*  SIDEBAR (GLASSMORPHISM)  */
 section[data-testid="stSidebar"] {
     background: linear-gradient(180deg, 
         rgba(15, 23, 42, 0.95) 0%, 
@@ -107,7 +107,7 @@ section[data-testid="stSidebar"] .stMarkdown h2 {
     letter-spacing: 1.5px;
 }
 
-/* ═══════════ METRİK KARTLARI (GLOSSY) ═══════════ */
+/*  METRK KARTLARI (GLOSSY)  */
 div[data-testid="stMetric"] {
     background: linear-gradient(145deg, 
         rgba(30, 41, 59, 0.8) 0%, 
@@ -156,7 +156,7 @@ div[data-testid="stMetricDelta"] {
     font-weight: 600 !important;
 }
 
-/* ═══════════ DATAFRAME / TABLO (DARK GLASS) ═══════════ */
+/*  DATAFRAME / TABLO (DARK GLASS)  */
 div[data-testid="stDataFrame"],
 .stDataFrame {
     border-radius: var(--radius) !important;
@@ -168,7 +168,7 @@ div[data-testid="stDataFrame"] > div {
     border-radius: var(--radius) !important;
 }
 
-/* ═══════════ BUTONLAR (GLOSSY) ═══════════ */
+/*  BUTONLAR (GLOSSY)  */
 .stButton > button {
     background: linear-gradient(145deg, 
         rgba(99, 102, 241, 0.2) 0%, 
@@ -201,7 +201,7 @@ div[data-testid="stDataFrame"] > div {
     box-shadow: 0 6px 24px rgba(99, 102, 241, 0.45) !important;
 }
 
-/* ═══════════ INPUT / SELECT / SLIDER ═══════════ */
+/*  INPUT / SELECT / SLIDER  */
 div[data-testid="stTextInput"] input,
 div[data-testid="stNumberInput"] input {
     background: rgba(15, 23, 42, 0.8) !important;
@@ -217,7 +217,7 @@ div[data-testid="stNumberInput"] input:focus {
     box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15) !important;
 }
 
-/* ═══════════ EXPANDER (GLASSMORPHISM) ═══════════ */
+/*  EXPANDER (GLASSMORPHISM)  */
 div[data-testid="stExpander"] {
     background: linear-gradient(145deg, 
         rgba(30, 41, 59, 0.5) 0%, 
@@ -228,7 +228,7 @@ div[data-testid="stExpander"] {
     -webkit-backdrop-filter: blur(8px) !important;
 }
 
-/* ═══════════ TABS ═══════════ */
+/*  TABS  */
 .stTabs [data-baseweb="tab-list"] {
     background: rgba(15, 23, 42, 0.5) !important;
     border-radius: var(--radius-sm) !important;
@@ -252,7 +252,7 @@ div[data-testid="stExpander"] {
     border-radius: 8px;
 }
 
-/* ═══════════ INFO / WARNING / ERROR / SUCCESS ═══════════ */
+/*  INFO / WARNING / ERROR / SUCCESS  */
 div[data-testid="stAlert"] {
     border-radius: var(--radius-sm) !important;
     backdrop-filter: blur(8px) !important;
@@ -260,7 +260,7 @@ div[data-testid="stAlert"] {
     border: 1px solid var(--border-glass) !important;
 }
 
-/* ═══════════ DOWNLOAD BUTTON ═══════════ */
+/*  DOWNLOAD BUTTON  */
 .stDownloadButton > button {
     background: linear-gradient(145deg, 
         rgba(16, 185, 129, 0.2) 0%, 
@@ -277,27 +277,27 @@ div[data-testid="stAlert"] {
     box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2) !important;
 }
 
-/* ═══════════ DIVIDER ═══════════ */
+/*  DIVIDER  */
 hr {
     border-color: var(--border-glass) !important;
     opacity: 0.5 !important;
 }
 
-/* ═══════════ SELECTBOX ═══════════ */
+/*  SELECTBOX  */
 div[data-testid="stSelectbox"] > div > div {
     background: rgba(15, 23, 42, 0.8) !important;
     border: 1px solid var(--border-glass) !important;
     border-radius: var(--radius-sm) !important;
 }
 
-/* ═══════════ MULTISELECT ═══════════ */
+/*  MULTISELECT  */
 div[data-testid="stMultiSelect"] > div > div {
     background: rgba(15, 23, 42, 0.8) !important;
     border: 1px solid var(--border-glass) !important;
     border-radius: var(--radius-sm) !important;
 }
 
-/* ═══════════ DATE INPUT ═══════════ */
+/*  DATE INPUT  */
 div[data-testid="stDateInput"] > div > div > input {
     background: rgba(15, 23, 42, 0.8) !important;
     border: 1px solid var(--border-glass) !important;
@@ -305,7 +305,7 @@ div[data-testid="stDateInput"] > div > div > input {
     color: var(--text-primary) !important;
 }
 
-/* ═══════════ CUSTOM CARD COMPONENT ═══════════ */
+/*  CUSTOM CARD COMPONENT  */
 .glossy-card {
     background: linear-gradient(145deg, 
         rgba(30, 41, 59, 0.7) 0%, 
@@ -335,7 +335,7 @@ div[data-testid="stDateInput"] > div > div > input {
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
 }
 
-/* ═══════════ STATUS BAR ═══════════ */
+/*  STATUS BAR  */
 .status-active {
     background: linear-gradient(145deg, 
         rgba(16, 185, 129, 0.15) 0%, 
@@ -365,7 +365,7 @@ div[data-testid="stDateInput"] > div > div > input {
     box-shadow: 0 2px 12px rgba(99, 102, 241, 0.08);
 }
 
-/* ═══════════ ALARM KARTLARI ═══════════ */
+/*  ALARM KARTLARI  */
 .alarm-card-error {
     background: linear-gradient(145deg, 
         rgba(239, 68, 68, 0.12) 0%, 
@@ -399,7 +399,7 @@ div[data-testid="stDateInput"] > div > div > input {
     box-shadow: 0 2px 16px rgba(16, 185, 129, 0.06);
 }
 
-/* ═══════════ ANOMALI KARTLARI ═══════════ */
+/*  ANOMALI KARTLARI  */
 .anomaly-critical {
     background: linear-gradient(145deg, 
         rgba(239, 68, 68, 0.1) 0%, 
@@ -425,7 +425,7 @@ div[data-testid="stDateInput"] > div > div > input {
     color: #fde68a;
 }
 
-/* ═══════════ BADGE / CHIP ═══════════ */
+/*  BADGE / CHIP  */
 .badge {
     display: inline-block;
     padding: 4px 12px;
@@ -457,7 +457,7 @@ div[data-testid="stDateInput"] > div > div > input {
     border: 1px solid rgba(99, 102, 241, 0.25);
 }
 
-/* ═══════════ SECTION HEADER ═══════════ */
+/*  SECTION HEADER  */
 .section-header {
     display: flex;
     align-items: center;
@@ -482,7 +482,7 @@ div[data-testid="stDateInput"] > div > div > input {
     font-family: 'Inter', sans-serif;
 }
 
-/* ═══════════ KPI ROW ═══════════ */
+/*  KPI ROW  */
 .kpi-container {
     display: flex;
     gap: 16px;
@@ -522,7 +522,7 @@ div[data-testid="stDateInput"] > div > div > input {
     font-family: 'Inter', sans-serif;
 }
 
-/* ═══════════ RESPONSIVE ═══════════ */
+/*  RESPONSIVE  */
 @media (max-width: 768px) {
     div[data-testid="stMetricValue"] {
         font-size: 1.3rem !important;
@@ -552,7 +552,7 @@ div[data-testid="stDateInput"] > div > div > input {
     }
 }
 
-/* ═══════════ ANIMASYONLAR ═══════════ */
+/*  ANIMASYONLAR  */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -572,23 +572,23 @@ div[data-testid="stDateInput"] > div > div > input {
 
 
 def inject_glossy_css():
-    """Glossy CSS temasını Streamlit sayfasına enjekte eder."""
+    """Glossy CSS temasn Streamlit sayfasna enjekte eder."""
     st.markdown(GLOSSY_CSS, unsafe_allow_html=True)
 
 
 def glossy_card(content: str, extra_class: str = ""):
-    """Glossy kart bileşeni oluşturur."""
+    """Glossy kart bileeni oluturur."""
     st.markdown(f'<div class="glossy-card {extra_class}">{content}</div>', unsafe_allow_html=True)
 
 
 def status_bar(active: bool, text: str):
-    """Durum çubuğu oluşturur (aktif/pasif)."""
+    """Durum ubuu oluturur (aktif/pasif)."""
     cls = "status-active" if active else "status-idle"
     st.markdown(f'<div class="{cls}">{text}</div>', unsafe_allow_html=True)
 
 
 def section_header(icon: str, title: str, subtitle: str = ""):
-    """Bölüm başlığı oluşturur."""
+    """Blm bal oluturur."""
     sub_html = f'<div class="subtitle">{subtitle}</div>' if subtitle else ""
     st.markdown(f'''
         <div class="section-header">
@@ -602,12 +602,12 @@ def section_header(icon: str, title: str, subtitle: str = ""):
 
 
 def badge(text: str, tipo: str = "info"):
-    """Badge/chip bileşeni döner (HTML string)."""
+    """Badge/chip bileeni dner (HTML string)."""
     return f'<span class="badge badge-{tipo}">{text}</span>'
 
 
 def kpi_row(items: list):
-    """KPI kartları satırı oluşturur.
+    """KPI kartlar satr oluturur.
     
     Args:
         items: [{'value': '1234', 'label': 'Toplam', 'color': '#6366f1'}, ...]
@@ -620,12 +620,12 @@ def kpi_row(items: list):
 
 
 def alarm_card(device_id: int, has_error: bool, content_html: str):
-    """Alarm kartı oluşturur."""
+    """Alarm kart oluturur."""
     cls = "alarm-card-error" if has_error else "alarm-card-ok"
     st.markdown(f'<div class="{cls}">{content_html}</div>', unsafe_allow_html=True)
 
 
 def anomaly_card(ciddiyet: str, content_html: str):
-    """Anomali kartı oluşturur."""
+    """Anomali kart oluturur."""
     cls = "anomaly-critical" if ciddiyet == "critical" else "anomaly-warning"
     st.markdown(f'<div class="{cls}">{content_html}</div>', unsafe_allow_html=True)
